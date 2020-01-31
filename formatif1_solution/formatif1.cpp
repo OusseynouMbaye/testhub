@@ -8,14 +8,17 @@ using namespace std;
 
 #include "activite.h" 
 #include "eleve.h" 
+#include "donnees.h"
 
-const int maxActivites = 10;
-const int maxEleves = 25;
+
+//const int maxActivites = 10;
+//const int maxEleves = 25;
 //partie 1 question 2
-Activite lesActivites[maxActivites];
+//Activite lesActivites[maxActivites];
 //**** partie 2-question 7
-Eleve lesEleves[maxEleves];
+//Eleve lesEleves[maxEleves];
 
+Donnees lesDonnesduProgramme;
 int nombreActivitesReelles = 0;
 int nombreElevesReels = 0;
 
@@ -108,8 +111,8 @@ void AjouterActivite()
 	
 	//exercice partie 1 question 2
 
-	lesActivites[nombreActivitesReelles].InitialiserActivite(code, titre);
-	lesActivites[nombreActivitesReelles].AssignerResponsable(responsable);
+	lesDonnesduProgramme.lesActivites[nombreActivitesReelles].InitialiserActivite(code, titre);
+	lesDonnesduProgramme.lesActivites[nombreActivitesReelles].AssignerResponsable(responsable);
 
 	nombreActivitesReelles++;
 }
@@ -120,7 +123,7 @@ void AfficherLesActivites()
 	ClrScr();
 	for (int i = 0; i < nombreActivitesReelles ; i++)
 	{
-		Afficher(lesActivites[i]);
+		Afficher(lesDonnesduProgramme.lesActivites[i]);
 	}
 	_getch();
 }
@@ -160,7 +163,7 @@ void AfficherLesEleves()
 	ClrScr();
 	for (int i = 0; i < nombreElevesReels; i++)
 	{
-		Afficher(lesEleves[i]);
+		Afficher(lesDonnesduProgramme.lesEleves[i]);
 	}
 
 	_getch();
@@ -181,7 +184,7 @@ void Afficher(Eleve inEleve)
 void InscrireUnEleve(string inCodeEleve, string inNom, string inPrenom)
 {
 	//***partie 2-question 8
-	lesEleves[nombreElevesReels].InscrireEleve(inCodeEleve,inNom,inPrenom);
+	lesDonnesduProgramme.lesEleves[nombreElevesReels].InscrireEleve(inCodeEleve,inNom,inPrenom);
 
 	nombreElevesReels++;
 }
@@ -207,7 +210,7 @@ void InscrireEleveActivite()
 	}
 	else 
 	{
-		Afficher(lesEleves[cptEleve]);
+		Afficher(lesDonnesduProgramme.lesEleves[cptEleve]);
 	}
 	//***partie 3-question 13-b
 	if (cptActivite == maxActivites)
@@ -216,12 +219,12 @@ void InscrireEleveActivite()
 	}
 	else
 	{
-		Afficher(lesActivites[cptActivite]);
+		Afficher(lesDonnesduProgramme.lesActivites[cptActivite]);
 	}
 	//***partie 3-question 13-c
 	if (cptEleve != maxEleves && cptActivite != maxActivites )
 	{
-		lesEleves[cptEleve].InscrireAUneActivite(&lesActivites[cptActivite]);
+	  lesDonnesduProgramme.lesEleves[cptEleve].InscrireAUneActivite(&lesDonnesduProgramme.lesActivites[cptActivite]);
 	}
 
 	_getch();
@@ -236,7 +239,7 @@ int RechercherEleve(string inCodeVoulu)
 	{
 		//***partie 3-question 12
 
-		if (lesEleves[cptEleve].getCodeEleve()==inCodeVoulu)
+		if (lesDonnesduProgramme.lesEleves[cptEleve].getCodeEleve()==inCodeVoulu)
 		{
 			trouve = true;
 		}
@@ -258,7 +261,7 @@ int RechercherActivite(string inCodeActiviteVoulue)
 	while (trouve == false && cptActivite < maxActivites/*nombreActivites*/)
 	{
 
-		if (lesActivites[cptActivite].getCodeActivite() == inCodeActiviteVoulue)
+		if (lesDonnesduProgramme.lesActivites[cptActivite].getCodeActivite() == inCodeActiviteVoulue)
 		{
 			trouve = true;
 		}
@@ -280,11 +283,11 @@ void AfficherLesInscriptions()
 
 	for (int i = 0; i < maxEleves; i++)
 	{
-		if(lesEleves[i].getActivitePourInscrire() != NULL)
+		if(lesDonnesduProgramme.lesEleves[i].getActivitePourInscrire() != NULL)
 		{ 
-			if (lesEleves[i].getActivitePourInscrire()->getCodeActivite()==activite)
+			if (lesDonnesduProgramme.lesEleves[i].getActivitePourInscrire()->getCodeActivite()==activite)
 			{
-				Afficher(lesEleves[i]);
+				Afficher( lesDonnesduProgramme.lesEleves[i]);
 			
 			}
 		}

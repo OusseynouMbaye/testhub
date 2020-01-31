@@ -158,6 +158,7 @@
     <ClCompile Include="formatif1.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\donnees.h" />
     <ClInclude Include="..\screen\screen.h" />
     <ClInclude Include="activite.h" />
     <ClInclude Include="eleve.h" />
