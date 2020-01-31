@@ -71,6 +71,8 @@ int main()
 //----------------------------------------------------------------------------------------
 char AfficherMenu()
 {
+
+	//test git hub nouvelle application
 	char choix;
 	ClrScr();
 	Gotoxy(15, 4);
